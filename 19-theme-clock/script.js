@@ -1,15 +1,14 @@
-
 const hourEl = document.querySelector('.hour');
 const minuteEl = document.querySelector('.minute');
 const secondEl = document.querySelector('.second');
 const timeEl = document.querySelector('.time');
 const dateEl = document.querySelector('.date');
-const toggle = document.querySelector('.toggle');
+const toggleBtn = document.querySelector('.toggle');
 
 const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
-toggle.addEventListener('click', () => {
+function toggleMode() {
     const html = document.querySelector('html');
     if (html.classList.contains('dark')) {
         html.classList.remove('dark');
@@ -18,7 +17,7 @@ toggle.addEventListener('click', () => {
         html.classList.add('dark');
         toggle.innerText = 'Light Mode';
     }
-})
+}
 
 function setTime() {
     const time = new Date();
@@ -45,5 +44,5 @@ const scale = (num, in_min, in_max, out_min, out_max) => {
 }
 
 setTime();
-
 setInterval(setTime, 1000);
+toggleBtn.addEventListener('click', toggleMode);
