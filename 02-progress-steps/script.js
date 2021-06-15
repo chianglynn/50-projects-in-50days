@@ -1,33 +1,14 @@
 const progress = document.getElementById('progress');
 const circles = document.querySelectorAll('.circle');
-const prev = document.getElementById('prev');
-const next = document.getElementById('next');
+const prevBtn = document.getElementById('prev');
+const nextBtn = document.getElementById('next');
 
 let currentActive = 1;
 
-next.addEventListener('click', () => {
-    currentActive++;
-    if (currentActive > circles.length) {
-        currentActive = circles.length;
-    }
-    update();
-})
-
-prev.addEventListener('click', () => {
-    currentActive--;
-    if (currentActive < 1) {
-        currentActive = 1;
-    }
-    update();
-})
-
-function update() {
+function updateProgress() {
     circles.forEach((circle, index) => {
-        if (index < currentActive) {
-            circle.classList.add('active');
-        } else {
-            circle.classList.remove('active');
-        }
+        if (index < currentActive) circle.classList.add('active')
+        else circle.classList.remove('active')
     })
 
     const actives = document.querySelectorAll('.active');
@@ -35,11 +16,26 @@ function update() {
     progress.style.width = ((actives.length - 1) / (circles.length - 1)) * 100 + '%';
 
     if (currentActive === 1) {
-        prev.disabled = true;
+        prevBtn.disabled = true;
     } else if (currentActive === circles.length) {
-        next.disabled = true;
+        nextBtn.disabled = true;
     } else {
-        prev.disabled = false;
-        next.disabled = false;
+        prevBtn.disabled = false;
+        nextBtn.disabled = false;
     }
 }
+
+function moveToNextProgress() {
+    currentActive++;
+    if (currentActive > circles.length) currentActive = circles.length
+    updateProgress();
+}
+
+function backToPrevProgress() {
+    currentActive--;
+    if (currentActive < 1) currentActive = 1
+    updateProgress();
+}
+
+nextBtn.addEventListener('click', moveToNextProgress);
+prevBtn.addEventListener('click', backToPrevProgress);
