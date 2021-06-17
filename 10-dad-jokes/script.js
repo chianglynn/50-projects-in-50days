@@ -1,7 +1,6 @@
 const jokeElement = document.getElementById('joke');
 const jokeBtn = document.getElementById('jokeBtn');
-
-generateJoke();
+const API_URL = 'https://icanhazdadjoke.com';
 
 // Solution 1: using .then()
 // function generateJoke() {
@@ -11,7 +10,7 @@ generateJoke();
 //         }
 //     };
 
-//     fetch('https://icanhazdadjoke.com', config)
+//     fetch(API_URL, config)
 //         .then(response => response.json())
 //         .then(data => jokeElement.textContent = data.joke)
 // }
@@ -23,11 +22,11 @@ async function generateJoke() {
             'Accept': 'application/json'
         }
     };
-
-    const response = await fetch('https://icanhazdadjoke.com', config);
+    const response = await fetch(API_URL, config);
     const data = await response.json();
 
     jokeElement.textContent = data.joke;
 }
 
+generateJoke();
 jokeBtn.addEventListener('click', generateJoke);
