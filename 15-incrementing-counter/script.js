@@ -3,16 +3,15 @@ const counters = document.querySelectorAll('.counter');
 counters.forEach(counter => {
     counter.innerText = '0';
     const updateCounter = () => {
-        const target = +counter.getAttribute('data-target');
-        const c = +counter.innerText;
-        const increment = target / 200;
+        const targetNumber = +counter.getAttribute('data-target');
+        const startNumber = +counter.innerText;
+        const increment = targetNumber / 200;
 
-        if (c < target) {
-            counter.innerText = `${Math.ceil(c + increment)}`;
+        if (startNumber < targetNumber) {
+            counter.innerText = `${Math.ceil(startNumber + increment)}`;
             setTimeout(updateCounter, 1);
-        } else {
-            counter.innerText = target;
         }
+        else counter.innerText = targetNumber
     }
     updateCounter();
-})
+});
