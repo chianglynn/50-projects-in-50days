@@ -4,19 +4,12 @@ const secondEl = document.querySelector('.second');
 const timeEl = document.querySelector('.time');
 const dateEl = document.querySelector('.date');
 const toggleBtn = document.querySelector('.toggle');
-
 const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
-function toggleMode() {
-    const html = document.querySelector('html');
-    if (html.classList.contains('dark')) {
-        html.classList.remove('dark');
-        toggle.innerText = 'Dark Mode';
-    } else {
-        html.classList.add('dark');
-        toggle.innerText = 'Light Mode';
-    }
+// StackOverflow https://stackoverflow.com/questions/10756313/javascript-jquery-map-a-range-of-numbers-to-another-range-of-numbers
+const scale = (num, in_min, in_max, out_min, out_max) => {
+    return (num - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 }
 
 function setTime() {
@@ -38,9 +31,15 @@ function setTime() {
     dateEl.innerHTML = `${days[day]}, ${months[month]} <span class="circle">${date}</span>`;
 }
 
-// StackOverflow https://stackoverflow.com/questions/10756313/javascript-jquery-map-a-range-of-numbers-to-another-range-of-numbers
-const scale = (num, in_min, in_max, out_min, out_max) => {
-    return (num - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+function toggleMode() {
+    const html = document.querySelector('html');
+    if (html.classList.contains('dark')) {
+        html.classList.remove('dark');
+        toggleBtn.innerText = 'Dark Mode';
+    } else {
+        html.classList.add('dark');
+        toggleBtn.innerText = 'Light Mode';
+    }
 }
 
 setTime();
