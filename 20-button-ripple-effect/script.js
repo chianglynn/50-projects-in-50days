@@ -1,23 +1,22 @@
-const buttons = document.querySelectorAll('.ripple');
+const button = document.querySelector('.ripple');
 
-buttons.forEach(button => {
-    button.addEventListener('click', function (e) {
-        const x = e.clientX;
-        const y = e.clientY;
+button.addEventListener('click', function (e) {
+    // Solution 1
+    // const x = e.clientX;
+    // const y = e.clientY;
+    // const buttonLeft = e.target.offsetLeft;
+    // const buttonTop = e.target.offsetTop;
+    // const xInside = x - buttonLeft;
+    // const yInside = y - buttonTop;
 
-        const buttonLeft = e.target.offsetLeft;
-        const buttonTop = e.target.offsetTop;
+    // Solution 2
+    const xInside = e.offsetX;
+    const yInside = e.offsetY;
 
-        const xInside = x - buttonLeft;
-        const yInside = y - buttonTop;
-
-        const circle = document.createElement('sapn');
-        circle.classList.add('circle');
-        circle.style.left = xInside + 'px';
-        circle.style.top = yInside + 'px';
-
-        this.appendChild(circle);
-
-        setTimeout(() => circle.remove(), 500);
-    })
+    const circle = document.createElement('sapn');
+    circle.classList.add('circle');
+    circle.style.left = xInside + 'px';
+    circle.style.top = yInside + 'px';
+    this.appendChild(circle);
+    setTimeout(() => circle.remove(), 500);
 });
