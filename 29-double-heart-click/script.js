@@ -1,15 +1,35 @@
 const loveMe = document.querySelector('.loveMe');
 const times = document.getElementById('times');
-
-let clickTime = 0;
 let timesClicked = 0;
+let clickTime = 0;
 
-// Use double click event
-// loveMe.addEventListener('dblclick', (e) => {
-//     createHeart(e);
-// });
+const createHeart = (e) => {
+    const heart = document.createElement('i');
+    heart.classList.add('fas');
+    heart.classList.add('fa-heart');
 
-// Create double click function by click event
+    // Solution 1 for setting x, y value
+    // const x = e.clientX;
+    // const y = e.clientY;
+    // const leftOffset = e.target.offsetLeft;
+    // const topOffset = e.target.offsetTop;
+    // const xInside = x - leftOffset;
+    // const yInside = y - topOffset;
+
+    // Solution 2 for setting x, y value
+    const xInside = e.offsetX;
+    const yInside = e.offsetY;
+
+    heart.style.left = `${xInside}px`;
+    heart.style.top = `${yInside}px`;
+
+    loveMe.appendChild(heart);
+    setTimeout(() => heart.remove(), 1000);
+
+    times.innerText = ++timesClicked;
+};
+
+// Solution 1 for event handler: Create double click function by click event
 loveMe.addEventListener('click', (e) => {
     if (clickTime === 0) {
         clickTime = new Date().getTime();
@@ -23,26 +43,5 @@ loveMe.addEventListener('click', (e) => {
     }
 });
 
-const createHeart = (e) => {
-    const heart = document.createElement('i');
-    heart.classList.add('fas');
-    heart.classList.add('fa-heart');
-
-    const x = e.clientX;
-    const y = e.clientY;
-
-    const leftOffset = e.target.offsetLeft;
-    const topOffset = e.target.offsetTop;
-
-    const xInside = x - leftOffset;
-    const yInside = y - topOffset;
-
-    heart.style.left = `${xInside}px`;
-    heart.style.top = `${yInside}px`;
-
-    loveMe.appendChild(heart);
-
-    times.innerText = ++timesClicked;
-
-    setTimeout(() => heart.remove(), 1000);
-};
+// Solution 2 for event handler: Use double click event
+// loveMe.addEventListener('dblclick', (e) => createHeart(e));
