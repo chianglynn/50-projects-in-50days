@@ -1,7 +1,7 @@
 const loveMe = document.querySelector('.loveMe');
 const times = document.getElementById('times');
 let timesClicked = 0;
-let clickTime = 0;
+let clickTime = 0; // Solution 1 for event handler
 
 const createHeart = (e) => {
     const heart = document.createElement('i');
