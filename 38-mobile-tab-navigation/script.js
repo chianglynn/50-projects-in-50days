@@ -1,20 +1,15 @@
 const contents = document.querySelectorAll('.content');
 const listItems = document.querySelectorAll('nav ul li');
 
+function hideAll() {
+    contents.forEach(content => content.classList.remove('show'));
+    listItems.forEach(item => item.classList.remove('active'));
+}
+
 listItems.forEach((item, index) => {
     item.addEventListener('click', () => {
-        hideAllContents();
-        hideAllItems();
-
+        hideAll();
         contents[index].classList.add('show');
         item.classList.add('active');
     });
 });
-
-function hideAllContents() {
-    contents.forEach(content => content.classList.remove('show'));
-}
-
-function hideAllItems() {
-    listItems.forEach(item => item.classList.remove('active'))
-}
