@@ -3,7 +3,6 @@ const testimonial = document.querySelector('.testimonial');
 const userImage = document.querySelector('.user-image');
 const username = document.querySelector('.username');
 const role = document.querySelector('.role');
-
 const testimonials = [
     {
         name: 'Miyah Myles',
@@ -57,22 +56,15 @@ const testimonials = [
             'This guy is a young and talented IT professional, proactive and responsible, with a strong work ethic. He is very strong in PSD2HTML conversions and HTML/CSS technology. He is a quick learner, eager to learn new technologies. He is focused and has the good dynamics to achieve due dates and outstanding results.',
     },
 ];
-
 let idx = 1;
 
 function updateTestimonial() {
     const { name, position, photo, text } = testimonials[idx];
-
     testimonial.textContent = text;
     userImage.src = photo;
     username.textContent = name;
     role.textContent = position;
-
-    idx++;
-
-    if (idx > testimonials.length - 1) {
-        idx = 0
-    }
+    idx < testimonials.length - 1 ? idx++ : idx = 0;
 }
 
 setInterval(updateTestimonial, 10000);
