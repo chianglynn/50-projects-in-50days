@@ -44,4 +44,4 @@ loveMe.addEventListener('click', (e) => {
 });
 
 // Solution 2 for event handler: Use double click event
-// loveMe.addEventListener('dblclick', (e) => createHeart(e));
+// loveMe.addEventListener('dblclick', createHeart);
